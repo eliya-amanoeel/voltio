@@ -1,0 +1,23 @@
+name: Deploy to IIS
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: [self-hosted, voltio]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy to IIS
+        run: |
+          $source      = "${{ github.workspace }}"
+          $destination = "C:\inetpub\voltioel"
+          robocopy $source $destination index.html logo.png /IS /IT
+          if ($LASTEXITCODE -le 7) { exit 0 } else { exit $LASTEXITCODE }
+        shell: powershell
