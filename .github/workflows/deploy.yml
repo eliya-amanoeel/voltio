@@ -17,7 +17,7 @@ jobs:
       - name: Deploy to IIS
         run: |
           $source      = "${{ github.workspace }}"
-          $destination = "C:\inetpub\voltioel"
+          $destination = "C:\inetpub\wwwroot\voltio"
           robocopy $source $destination index.html logo.png /IS /IT
           if ($LASTEXITCODE -le 7) { exit 0 } else { exit $LASTEXITCODE }
         shell: powershell
