@@ -443,6 +443,17 @@ ul  { list-style: none; }
   box-shadow: 0 0 0 3px rgba(59,130,246,.15);
   background: var(--white);
 }
+.form-group input[aria-invalid="true"],
+.form-group textarea[aria-invalid="true"] {
+  border-color: #dc2626;
+  box-shadow: 0 0 0 3px rgba(220,38,38,.1);
+}
+.form-group input[aria-invalid="true"]:focus,
+.form-group textarea[aria-invalid="true"]:focus {
+  border-color: #dc2626;
+  box-shadow: 0 0 0 3px rgba(220,38,38,.15);
+}
+.field-error { color: #dc2626; font-size: .875rem; }
 .form-group textarea { min-height: 140px; resize: vertical; }
 
 /* ── Buttons ───────────────────────────────────── */

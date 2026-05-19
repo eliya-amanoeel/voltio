@@ -11,40 +11,33 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Write web.config
+      - name: Inject SMTP password into web.config
         env:
           SMTP_PASS: ${{ secrets.SMTP_PASSWORD }}
         run: |
-          $pass  = $env:SMTP_PASS
-          $lines = @(
-            '<?xml version="1.0" encoding="utf-8"?>',
-            '<configuration>',
-            '  <system.net>',
-            '    <mailSettings>',
-            '      <smtp deliveryMethod="Network">',
-            '        <network',
-            '          host="send.one.com"',
-            '          port="587"',
-            '          enableSsl="true"',
-            '          userName="info@voltioel.se"',
-            ('          password="' + $pass + '"'),
-            '          defaultCredentials="false" />',
-            '      </smtp>',
-            '    </mailSettings>',
-            '  </system.net>',
-            '</configuration>'
-          )
+          $content = Get-Content "${{ github.workspace }}\web.config" -Raw
+          $content = $content -replace '__SMTP_PASSWORD__', $env:SMTP_PASS
           [System.IO.File]::WriteAllText(
             "${{ github.workspace }}\web.config",
-            ($lines -join "`n"),
+            $content,
             [System.Text.Encoding]::UTF8
           )
         shell: powershell
 
+      - name: Install dependencies
+        run: npm ci
+        shell: powershell
+
+      - name: Build React app
+        run: npm run build
+        shell: powershell
+
       - name: Deploy to IIS
         run: |
-          $source      = "${{ github.workspace }}"
+          $source      = "${{ github.workspace }}\dist"
           $destination = "C:\inetpub\wwwroot\voltio"
-          robocopy $source $destination index.html tjanster.html om-oss.html kontakt.html style.css LOGO.png send.ashx web.config /IS /IT
+          robocopy $source $destination /E /IS /IT
+          Copy-Item "${{ github.workspace }}\send.ashx" $destination -Force
+          Copy-Item "${{ github.workspace }}\web.config" $destination -Force
           if ($LASTEXITCODE -le 7) { exit 0 } else { exit $LASTEXITCODE }
         shell: powershell

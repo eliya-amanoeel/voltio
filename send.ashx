@@ -12,7 +12,7 @@ public class Send : IHttpHandler
         // Only accept POST requests
         if (ctx.Request.HttpMethod != "POST")
         {
-            ctx.Response.Redirect("kontakt.html");
+            ctx.Response.Redirect("/kontakt");
             return;
         }
 
@@ -30,14 +30,18 @@ public class Send : IHttpHandler
             string.IsNullOrWhiteSpace(message)   ||
             !IsValidEmail(email))
         {
-            ctx.Response.Redirect("kontakt.html?error=validation");
+            bool wantsJsonV = (ctx.Request.Headers["Accept"] ?? "").Contains("application/json");
+            if (wantsJsonV) { ctx.Response.ContentType = "application/json"; ctx.Response.Write("{\"ok\":false,\"error\":\"validation\"}"); }
+            else ctx.Response.Redirect("/kontakt");
             return;
         }
 
         // Phone is optional — validate format only if provided
         if (!string.IsNullOrWhiteSpace(phone) && !IsValidPhone(phone))
         {
-            ctx.Response.Redirect("kontakt.html?error=validation");
+            bool wantsJsonV = (ctx.Request.Headers["Accept"] ?? "").Contains("application/json");
+            if (wantsJsonV) { ctx.Response.ContentType = "application/json"; ctx.Response.Write("{\"ok\":false,\"error\":\"validation\"}"); }
+            else ctx.Response.Redirect("/kontakt");
             return;
         }
 
@@ -90,7 +94,16 @@ public class Send : IHttpHandler
             catch { /* ignore log failures */ }
         }
 
-        ctx.Response.Redirect(sent ? "kontakt.html?sent=1" : "kontakt.html?error=smtp");
+        bool wantsJson = (ctx.Request.Headers["Accept"] ?? "").Contains("application/json");
+        if (wantsJson)
+        {
+            ctx.Response.ContentType = "application/json";
+            ctx.Response.Write(sent ? "{\"ok\":true}" : "{\"ok\":false}");
+        }
+        else
+        {
+            ctx.Response.Redirect("/kontakt");
+        }
     }
 
     private static string Sanitize(string input)
