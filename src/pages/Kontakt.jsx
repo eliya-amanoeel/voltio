@@ -129,7 +129,7 @@ export default function Kontakt() {
                   <Err name="email" />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="phone">Telefon *</label>
+                  <label htmlFor="phone">Telefon</label>
                   <input type="tel" id="phone" placeholder="Ditt telefonnummer"
                     aria-invalid={errors.phone ? 'true' : undefined}
                     {...register('phone')} />

@@ -1,6 +1,14 @@
+import { useState } from 'react'
+
 const Check = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+  </svg>
+)
+
+const Chevron = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+    <path d="m6 9 6 6 6-6"/>
   </svg>
 )
 
@@ -14,6 +22,7 @@ const services = [
     title: 'Akut El Jour',
     desc: 'Vi finns tillgängliga dygnet runt för akuta elfel och nödsituationer.',
     features: ['24/7 tillgänglighet', 'Snabb responstid', 'Säker felsökning', 'Akutåtgärder'],
+    details: 'Elolyckor och strömavbrott inträffar oftast vid sämsta möjliga tidpunkt. Vår akutjour är aktiv dygnet runt, alla dagar om året — inklusive helger och röda dagar. Våra auktoriserade elektriker når dig snabbt och åtgärdar felet säkert, oavsett om det gäller kortslutning, trasigt elskåp eller totalt strömavbrott. Vi prioriterar alltid säkerheten och arbetar metodiskt tills problemet är helt löst.',
   },
   {
     icon: (
@@ -24,6 +33,7 @@ const services = [
     title: 'Nyinstallation',
     desc: 'Kompletta elinstallationer för nybyggnation, tillbyggnader och renoveringar.',
     features: ['Projektering och planering', 'Kompletta elsystem', 'Slutbesiktning', 'Kvalitetsgaranti'],
+    details: 'Oavsett om du bygger nytt, bygger till eller renoverar hjälper vi dig från start till mål. Vi projekterar och installerar kompletta elsystem som uppfyller alla gällande normer och standarder. Vi samarbetar tätt med bygg- och hantverkslag för att hålla tidplanen, och avslutar varje projekt med en noggrann slutbesiktning som säkerställer att allt fungerar korrekt och säkert.',
   },
   {
     icon: (
@@ -34,6 +44,7 @@ const services = [
     title: 'Felsökning och Reparation',
     desc: 'Experthjälp med att hitta och åtgärda elfel i befintliga system.',
     features: ['Systematisk felsökning', 'Moderna mätinstrument', 'Snabb reparation', 'Dokumentation'],
+    details: 'Mystiska elfel kan vara svåra att lokalisera utan rätt kompetens och utrustning. Vi använder moderna mätinstrument och en systematisk metodik för att hitta rotorsaken — inte bara symptomen. Det kan handla om trasiga kablar, lösa anslutningar eller överlastade kretsar. När felet är identifierat åtgärdar vi det korrekt och dokumenterar allt som gjorts för din trygghet.',
   },
   {
     icon: (
@@ -44,6 +55,7 @@ const services = [
     title: 'Renovering av Elsystem',
     desc: 'Modernisering av äldre elsystem för ökad säkerhet och funktionalitet.',
     features: ['Systembedömning', 'Uppdatering av uttag', 'Jordfelsbrytare', 'Ökad kapacitet'],
+    details: 'Äldre fastigheter har ofta elsystem som inte uppfyller dagens krav på säkerhet och kapacitet. Vi bedömer ditt befintliga system och rekommenderar kostnadseffektiva uppgraderingar — från att installera jordfelsbrytare och byta uttag till att öka kapaciteten för moderna elbehov som laddstolpar och värmepumpar. Resultatet är ett säkrare hem och lägre risk för el-relaterade problem.',
   },
   {
     icon: (
@@ -54,6 +66,7 @@ const services = [
     title: 'Belysningsinstallation',
     desc: 'Professionell installation av inomhus- och utomhusbelysning.',
     features: ['LED-belysning', 'Smart styrning', 'Utomhusbelysning', 'Dimmer & ljusdesign'],
+    details: 'Rätt belysning förvandlar ett rum. Vi installerar allt från infällda spotlights och takbelysning till utomhusbelysning och dekorativt ljus. Vi är specialister på LED-lösningar som ger bättre ljuskvalitet och sparar upp till 80\u00a0% energi jämfört med traditionella glödlampor. Vi installerar även dimmrar, rörelsesensorer och smarta ljussystem som kan styras via app eller röst.',
   },
   {
     icon: (
@@ -61,9 +74,10 @@ const services = [
         <rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/>
       </svg>
     ),
-    title: 'Elcentral & Säkringsbyten',
-    desc: 'Installation och uppdatering av elcentraler och säkringssystem.',
-    features: ['Moderna elcentraler', 'Jordfelsbrytare', 'Kapacitetsökning', 'Besiktning'],
+    title: 'Elcentral & S\u00e4kringsbyten',
+    desc: 'Installation och uppdatering av elcentraler och s\u00e4kringssystem.',
+    features: ['Moderna elcentraler', 'Jordfelsbrytare', 'Kapacitets\u00f6kning', 'Besiktning'],
+    details: 'Elcentralen \u00e4r hj\u00e4rtat i fastighetens elsystem \u2014 en f\u00f6r\u00e5ldrad central kan orsaka elavbrott, \u00f6verhettning och i v\u00e4rsta fall brand. Vi installerar moderna centraler med automats\u00e4kringar och jordfelsbrytare f\u00f6r b\u00e4ttre skydd och enklare hantering. Vi kan \u00e4ven uppgradera din befintliga central f\u00f6r att ge plats \u00e5t fler kretsar och \u00f6kad kapacitet.',
   },
   {
     icon: (
@@ -72,12 +86,20 @@ const services = [
       </svg>
     ),
     title: 'Smart Hem',
-    desc: 'Installation av smarta hemlösningar för komfort och energibesparing.',
-    features: ['Smart belysning', 'Hemautomation', 'App-kontroll', 'Energiövervakning'],
+    desc: 'Installation av smarta heml\u00f6sningar f\u00f6r komfort och energibesparing.',
+    features: ['Smart belysning', 'Hemautomation', 'App-kontroll', 'Energi\u00f6vervakning'],
+    details: 'G\u00f6r ditt hem intelligent. Vi installerar och konfigurerar smarta hemsystem f\u00f6r belysning, uttag och energi\u00f6vervakning \u2014 styrda via smartphone eller r\u00f6stassistent. Med automatiseringar som t\u00e4nder lamporna n\u00e4r du kommer hem eller st\u00e4nger av allt n\u00e4r du g\u00e5r sparar du energi och \u00f6kar komforten. Vi hj\u00e4lper dig \u00e4ven med konfiguration och best\u00e4mmer ihop vilket system som passar just dig.',
   },
 ]
 
 export default function Tjanster() {
+  const [open, setOpen] = useState(new Set())
+  const toggle = title => setOpen(prev => {
+    const next = new Set(prev)
+    next.has(title) ? next.delete(title) : next.add(title)
+    return next
+  })
+
   return (
     <>
       {/* ═══ PAGE HEADER ═══ */}
@@ -92,23 +114,39 @@ export default function Tjanster() {
       <section className="section-white">
         <div className="container">
           <div className="service-cards-grid">
-            {services.map(s => (
-              <div className="service-card" key={s.title}>
-                <div className="service-card-head">
-                  {s.icon}
-                  <h3>{s.title}</h3>
-                </div>
-                <p className="service-card-desc">{s.desc}</p>
-                <div className="service-features">
-                  {s.features.map(f => (
-                    <div className="service-feature" key={f}>
-                      <Check />
-                      <span>{f}</span>
+            {services.map(s => {
+              const isOpen = open.has(s.title)
+              return (
+                <div className="service-card" key={s.title}>
+                  <div className="service-card-head">
+                    {s.icon}
+                    <h3>{s.title}</h3>
+                  </div>
+                  <p className="service-card-desc">{s.desc}</p>
+                  <div className="service-features">
+                    {s.features.map(f => (
+                      <div className="service-feature" key={f}>
+                        <Check />
+                        <span>{f}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <div className={`service-expand${isOpen ? ' open' : ''}`}>
+                    <div className="service-expand-inner">
+                      <p>{s.details}</p>
                     </div>
-                  ))}
+                  </div>
+                  <button
+                    className="service-read-more"
+                    onClick={() => toggle(s.title)}
+                    aria-expanded={isOpen}
+                  >
+                    <span>{isOpen ? 'Visa mindre' : 'Läs mer'}</span>
+                    <Chevron />
+                  </button>
                 </div>
-              </div>
-            ))}
+              )
+            })}
           </div>
         </div>
       </section>

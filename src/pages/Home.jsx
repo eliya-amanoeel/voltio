@@ -6,31 +6,46 @@ export default function Home() {
       {/* ═══ HERO ═══ */}
       <section className="hero-section">
         <div className="container">
-          <div className="hero-center">
-            <h1>Professionella Eltjänster i <span>Södertälje &amp; Stockholm</span></h1>
-            <p>Välkommen till Voltio EL AB – din trygga och erfarna elektriker. Med över 15 års erfarenhet erbjuder vi professionella elinstallationer och moderna tekniska lösningar för både privatpersoner och företag.</p>
-            <div className="hero-cta">
-              <a href="tel:0739133613" className="btn btn-blue">Ring oss nu — 073-913 36 13</a>
-              <Link to="/kontakt" className="btn btn-outline">Begär offert</Link>
+          <div className="hero-split">
+            <div className="hero-split-text">
+              <h1>Professionella Eltjänster i <span>Södertälje &amp; Stockholm</span></h1>
+              <p>Välkommen till Voltio EL AB – din trygga och erfarna elektriker. Med över 15 års erfarenhet erbjuder vi professionella elinstallationer och moderna tekniska lösningar för både privatpersoner och företag.</p>
+              <div className="hero-cta">
+                <a href="tel:0739133613" className="btn btn-blue" style={{gap: '.5rem'}}>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.18 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+                  </svg>
+                  073-913 36 13
+                </a>
+                <Link to="/kontakt" className="btn btn-outline">Begär offert</Link>
+              </div>
+              <div className="hero-icons">
+                <div className="hero-icon-item">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                  </svg>
+                  <p>Certifierade Elektriker</p>
+                </div>
+                <div className="hero-icon-item">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+                  </svg>
+                  <p>15+ Års Erfarenhet</p>
+                </div>
+                <div className="hero-icon-item">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+                  </svg>
+                  <p>Kvalitet &amp; Säkerhet</p>
+                </div>
+              </div>
             </div>
-            <div className="hero-icons">
-              <div className="hero-icon-item">
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <div className="about-img-wrap">
+              <div style={{ width: '100%', aspectRatio: '4/3', background: 'var(--gray-100)', borderRadius: 'var(--radius)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '.75rem', color: 'var(--gray-400)', border: '2px dashed var(--gray-200)' }}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
                 </svg>
-                <p>Certifierade Elektriker</p>
-              </div>
-              <div className="hero-icon-item">
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
-                </svg>
-                <p>15+ Års Erfarenhet</p>
-              </div>
-              <div className="hero-icon-item">
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
-                </svg>
-                <p>Kvalitet &amp; Säkerhet</p>
+                <span style={{ fontSize: '.875rem' }}>Bild kommer snart</span>
               </div>
             </div>
           </div>
@@ -91,28 +106,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══ ABOUT TEASER ═══ */}
-      <section className="section-white" style={{ borderTop: '1px solid var(--gray-200)' }}>
-        <div className="container">
-          <div className="about-grid">
-            <div className="about-text">
-              <h2>Vi på <span>Voltio EL AB</span></h2>
-              <p>Med över 15 års erfarenhet och ett team av certifierade elektriker tar vi oss an allt från akuta eljobb till större installationsprojekt – alltid med fokus på kvalitet, säkerhet och kundnöjdhet.</p>
-              <Link to="/om-oss" className="btn btn-blue" style={{ display: 'inline-block', marginTop: '1rem' }}>Läs mer om oss</Link>
-            </div>
-            <div>
-              <div className="about-img-wrap">
-                <div style={{ width: '100%', aspectRatio: '4/3', background: 'var(--gray-100)', borderRadius: 'var(--radius)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '.75rem', color: 'var(--gray-400)', border: '2px dashed var(--gray-200)' }}>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                    <rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
-                  </svg>
-                  <span style={{ fontSize: '.875rem' }}>Bild kommer snart</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
     </>
   )
 }

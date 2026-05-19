@@ -162,26 +162,31 @@ ul  { list-style: none; }
 /* ── Hero (homepage) ───────────────────────────── */
 .hero-section {
   background: linear-gradient(to right, var(--blue-50), var(--blue-100));
-  padding: 7rem 0;
+  padding: 5rem 0;
 }
-.hero-center {
-  max-width: 48rem;
-  margin: 0 auto;
-  text-align: center;
+.hero-split {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  align-items: center;
 }
-.hero-center h1 {
-  font-size: clamp(2.25rem,5vw,3rem);
+@media (min-width: 900px) {
+  .hero-split { grid-template-columns: 1fr 1fr; }
+}
+.hero-split-text h1 {
+  font-size: clamp(2.25rem, 5vw, 3rem);
   font-weight: 500;
   color: var(--gray-900);
   margin-bottom: 1.5rem;
   line-height: 1.2;
 }
-.hero-center h1 span { color: var(--blue-500); }
-.hero-center > p {
-  font-size: 1.25rem;
+.hero-split-text h1 span { color: var(--blue-500); }
+.hero-split-text > p {
+  font-size: 1.125rem;
   color: var(--gray-600);
   margin-bottom: 2rem;
 }
+.hero-split-text .hero-cta { justify-content: center; }
 .hero-cta {
   display: flex;
   justify-content: center;
@@ -290,6 +295,42 @@ ul  { list-style: none; }
 }
 .service-feature svg  { color: var(--blue-500); flex-shrink: 0; }
 .service-feature span { color: var(--gray-600); font-size: .875rem; }
+
+/* expandable details */
+.service-expand {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows .3s ease;
+}
+.service-expand.open { grid-template-rows: 1fr; }
+.service-expand-inner { overflow: hidden; }
+.service-expand-inner p {
+  margin-top: .75rem;
+  padding-top: .75rem;
+  border-top: 1px solid var(--gray-200);
+  color: var(--gray-600);
+  font-size: .875rem;
+  line-height: 1.65;
+}
+
+.service-read-more {
+  display: inline-flex;
+  align-items: center;
+  gap: .3rem;
+  margin-top: .875rem;
+  padding: 0;
+  background: none;
+  border: none;
+  color: var(--blue-500);
+  font-size: .875rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+.service-read-more:hover { color: var(--blue-600); }
+.service-read-more svg {
+  transition: transform .3s ease;
+}
+.service-read-more[aria-expanded="true"] svg { transform: rotate(180deg); }
 
 /* ── Om oss page ───────────────────────────────── */
 .about-grid {
