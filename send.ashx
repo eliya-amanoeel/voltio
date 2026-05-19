@@ -65,13 +65,14 @@ public class Send : IHttpHandler
 
             using (var msg = new MailMessage())
             {
-                // From must match the authenticated SMTP account
-                msg.From    = new MailAddress("info@voltioel.se", "Voltio EL AB");
+                msg.From           = new MailAddress("info@voltioel.se", "Voltio EL AB");
                 msg.ReplyToList.Add(new MailAddress(email, firstName + " " + lastName));
                 msg.To.Add("info@voltioel.se");
-                msg.Subject    = subject;
-                msg.Body       = body;
-                msg.IsBodyHtml = false;
+                msg.Subject        = subject;
+                msg.SubjectEncoding = System.Text.Encoding.UTF8;
+                msg.Body           = body;
+                msg.BodyEncoding   = System.Text.Encoding.UTF8;
+                msg.IsBodyHtml     = false;
 
                 using (var smtp = new SmtpClient())
                 {

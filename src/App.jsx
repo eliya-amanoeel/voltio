@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import { Toaster } from 'sonner'
 import Header from './components/Header'
 import Footer from './components/Footer'
@@ -18,6 +18,7 @@ export default function App() {
           <Route path="/tjanster" element={<Tjanster />} />
           <Route path="/om-oss" element={<OmOss />} />
           <Route path="/kontakt" element={<Kontakt />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>
       <Footer />
