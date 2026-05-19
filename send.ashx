@@ -41,6 +41,7 @@ public class Send : IHttpHandler
             return;
         }
 
+        bool sent = false;
         try
         {
             string subject = string.Format(
@@ -75,7 +76,7 @@ public class Send : IHttpHandler
                 }
             }
 
-            ctx.Response.Redirect("kontakt.html?sent=1");
+            sent = true;
         }
         catch (Exception ex)
         {
@@ -87,8 +88,9 @@ public class Send : IHttpHandler
                 System.IO.File.AppendAllText(logPath, entry + Environment.NewLine);
             }
             catch { /* ignore log failures */ }
-            ctx.Response.Redirect("kontakt.html?error=smtp");
         }
+
+        ctx.Response.Redirect(sent ? "kontakt.html?sent=1" : "kontakt.html?error=smtp");
     }
 
     private static string Sanitize(string input)
