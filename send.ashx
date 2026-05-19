@@ -49,7 +49,7 @@ public class Send : IHttpHandler
         try
         {
             string subject = string.Format(
-                "Ny kontakt från {0} {1} via voltioel.se",
+                "Ny kontakt fr\u00e5n {0} {1} via voltioel.se",
                 firstName, lastName
             );
 
@@ -59,7 +59,7 @@ public class Send : IHttpHandler
                 "Telefon:  {3}\r\n" +
                 "\r\nMeddelande:\r\n{4}",
                 firstName, lastName, email,
-                string.IsNullOrWhiteSpace(phone) ? "—" : phone,
+                string.IsNullOrWhiteSpace(phone) ? "\u2014" : phone,
                 message
             );
 
@@ -68,7 +68,8 @@ public class Send : IHttpHandler
                 msg.From           = new MailAddress("info@voltioel.se", "Voltio EL AB");
                 msg.ReplyToList.Add(new MailAddress(email, firstName + " " + lastName));
                 msg.To.Add("info@voltioel.se");
-                msg.Subject        = "=?UTF-8?B?" + Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(subject)) + "?=";
+                msg.Subject        = subject;
+                msg.SubjectEncoding = System.Text.Encoding.UTF8;
                 msg.Body           = body;
                 msg.BodyEncoding   = System.Text.Encoding.UTF8;
                 msg.IsBodyHtml     = false;

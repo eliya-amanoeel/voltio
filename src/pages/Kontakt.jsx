@@ -7,8 +7,7 @@ const schema = z.object({
   firstName: z.string().min(1, 'Ange förnamn'),
   lastName:  z.string().min(1, 'Ange efternamn'),
   email:     z.string().min(1, 'Ange e-postadress').email('Ogiltig e-postadress'),
-  phone: z.string().optional().refine(v => {
-    if (!v?.trim()) return true
+  phone: z.string().min(1, 'Ange telefonnummer').refine(v => {
     const digits = v.replace(/[\s\-()+]/g, '')
     return /^\d{7,15}$/.test(digits)
   }, 'Ogiltigt telefonnummer (7–15 siffror)'),
@@ -130,7 +129,7 @@ export default function Kontakt() {
                   <Err name="email" />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="phone">Telefon</label>
+                  <label htmlFor="phone">Telefon *</label>
                   <input type="tel" id="phone" placeholder="Ditt telefonnummer"
                     aria-invalid={errors.phone ? 'true' : undefined}
                     {...register('phone')} />
