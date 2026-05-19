@@ -1,2 +1,5 @@
 # Prevent accidentally committing a web.config with real credentials
 web.config
+
+# macOS metadata
+.DS_Store
