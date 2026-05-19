@@ -6,9 +6,10 @@ Webbplats för Voltio EL AB — elektriker i Södertälje & Stockholm.
 
 Voltio EL AB drivs av två bröder med över 15 års erfarenhet inom elbranschen, verksamma i Södertälje och Stockholm.
 
-**Kontakt**
+## Kontakt
+
 - Telefon: 073-913 36 13
-- E-post: info@voltioel.se
+- E-post: [info@voltioel.se](mailto:info@voltioel.se)
 - Org.nr: 559577-1006
 
 ## Teknikstack

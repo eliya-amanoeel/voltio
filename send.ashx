@@ -68,8 +68,7 @@ public class Send : IHttpHandler
                 msg.From           = new MailAddress("info@voltioel.se", "Voltio EL AB");
                 msg.ReplyToList.Add(new MailAddress(email, firstName + " " + lastName));
                 msg.To.Add("info@voltioel.se");
-                msg.Subject        = subject;
-                msg.SubjectEncoding = System.Text.Encoding.UTF8;
+                msg.Subject        = "=?UTF-8?B?" + Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(subject)) + "?=";
                 msg.Body           = body;
                 msg.BodyEncoding   = System.Text.Encoding.UTF8;
                 msg.IsBodyHtml     = false;
