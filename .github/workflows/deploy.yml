@@ -15,19 +15,28 @@ jobs:
         env:
           SMTP_PASS: ${{ secrets.SMTP_PASSWORD }}
         run: |
-          $xml = '<?xml version="1.0" encoding="utf-8"?>' +
-            '<configuration>' +
-            '<system.net><mailSettings>' +
-            '<smtp deliveryMethod="Network"><network' +
-            ' host="send.one.com" port="587" enableSsl="true"' +
-            ' userName="info@voltioel.se"' +
-            ' password="' + $env:SMTP_PASS + '"' +
-            ' defaultCredentials="false" /></smtp>' +
-            '</mailSettings></system.net>' +
+          $pass  = $env:SMTP_PASS
+          $lines = @(
+            '<?xml version="1.0" encoding="utf-8"?>',
+            '<configuration>',
+            '  <system.net>',
+            '    <mailSettings>',
+            '      <smtp deliveryMethod="Network">',
+            '        <network',
+            '          host="send.one.com"',
+            '          port="587"',
+            '          enableSsl="true"',
+            '          userName="info@voltioel.se"',
+            ('          password="' + $pass + '"'),
+            '          defaultCredentials="false" />',
+            '      </smtp>',
+            '    </mailSettings>',
+            '  </system.net>',
             '</configuration>'
+          )
           [System.IO.File]::WriteAllText(
             "${{ github.workspace }}\web.config",
-            $xml,
+            ($lines -join "`n"),
             [System.Text.Encoding]::UTF8
           )
         shell: powershell
