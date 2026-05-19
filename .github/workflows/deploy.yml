@@ -45,6 +45,6 @@ jobs:
         run: |
           $source      = "${{ github.workspace }}"
           $destination = "C:\inetpub\wwwroot\voltio"
-          robocopy $source $destination index.html tjanster.html om-oss.html kontakt.html style.css logo.png send.ashx web.config /IS /IT
+          robocopy $source $destination index.html tjanster.html om-oss.html kontakt.html style.css LOGO.jpeg send.ashx web.config /IS /IT
           if ($LASTEXITCODE -le 7) { exit 0 } else { exit $LASTEXITCODE }
         shell: powershell
