@@ -3,296 +3,146 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Voltio El AB</title>
-  <style>
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background-color: #0a0a12;
-      color: #f0f0f0;
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-      text-align: center;
-      padding: 2rem;
-      overflow: hidden;
-    }
-
-    #lightning-canvas {
-      position: fixed;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      pointer-events: none;
-    }
-
-    #flash {
-      position: fixed;
-      inset: 0;
-      background: white;
-      opacity: 0;
-      z-index: 1;
-      pointer-events: none;
-      transition: opacity 0.04s ease-in;
-    }
-
-    .card {
-      position: relative;
-      z-index: 2;
-      max-width: 480px;
-      width: 100%;
-      background: rgba(15, 15, 25, 0.75);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 16px;
-      padding: 3rem 2.5rem;
-      box-shadow:
-        0 8px 40px rgba(0, 0, 0, 0.7),
-        0 0 0 1px rgba(150, 180, 255, 0.05);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-    }
-
-    .logo-wrapper {
-      margin-bottom: 2rem;
-    }
-
-    .logo-wrapper img {
-      max-width: 200px;
-      max-height: 100px;
-      width: auto;
-      height: auto;
-      object-fit: contain;
-    }
-
-    h1 {
-      font-size: 1.8rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      color: #ffffff;
-      margin-bottom: 0.5rem;
-    }
-
-    .tagline {
-      font-size: 1rem;
-      color: #888;
-      margin-bottom: 2rem;
-      font-weight: 400;
-    }
-
-    .divider {
-      height: 1px;
-      background: linear-gradient(to right, transparent, #f5c518, transparent);
-      margin: 2rem 0;
-      opacity: 0.4;
-    }
-
-    .coming-soon {
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: #f5c518;
-      font-weight: 600;
-      margin-bottom: 0.75rem;
-    }
-
-    .message {
-      font-size: 1rem;
-      color: #aaa;
-      line-height: 1.6;
-    }
-
-    footer {
-      position: relative;
-      z-index: 2;
-      margin-top: 2.5rem;
-      font-size: 0.78rem;
-      color: #444;
-    }
-  </style>
+  <title>Voltio EL AB — Elektriker i Södertälje &amp; Stockholm</title>
+  <meta name="description" content="Professionella eltjänster i Södertälje och Stockholm. Akut eljour, nyinstallation, felsökning, smart hem och mer. Ring 0739-133 613." />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <canvas id="lightning-canvas"></canvas>
-  <div id="flash"></div>
-
-  <div class="card">
-
-    <div class="logo-wrapper">
-      <!-- Replace logo.png with your actual logo filename -->
-      <img src="logo.png" alt="Voltio El AB logotyp" />
+<!-- ═══ HEADER ═══ -->
+<header class="site-header">
+  <div class="container">
+    <div class="header-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="logo.PNG" alt="Voltio EL AB" onerror="this.style.display='none'" />
+      </a>
+      <nav class="nav-links">
+        <a href="index.html" class="active">Hem</a>
+        <a href="tjanster.html">Tjänster</a>
+        <a href="om-oss.html">Om oss</a>
+        <a href="kontakt.html">Kontakt</a>
+      </nav>
+      <button class="nav-toggle" aria-label="Öppna meny" id="menu-btn">
+        <svg id="icon-menu" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+        <svg id="icon-x" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
+      </button>
     </div>
-
-    <h1>Voltio El AB</h1>
-    <p class="tagline">Auktoriserade elektriker</p>
-
-    <div class="divider"></div>
-
-    <p class="coming-soon">Hemsida under uppbyggnad</p>
-    <p class="message">
-
-    </p>
-
+    <nav class="mobile-menu" id="mobile-menu">
+      <a href="index.html" class="active">Hem</a>
+      <a href="tjanster.html">Tjänster</a>
+      <a href="om-oss.html">Om oss</a>
+      <a href="kontakt.html">Kontakt</a>
+    </nav>
   </div>
+</header>
 
-  <footer>
-    &copy; 2026 Enkidu
-  </footer>
+<main>
 
-  <script>
-    const canvas = document.getElementById('lightning-canvas');
-    const ctx = canvas.getContext('2d');
-    const flash = document.getElementById('flash');
+<!-- ═══ HERO ═══ -->
+<section class="hero-section">
+  <div class="container">
+    <div class="hero-center">
+      <h1>Professionella Eltjänster i <span>Södertälje &amp; Stockholm</span></h1>
+      <p>Välkommen till Voltio EL AB – din trygga och erfarna elektriker. Med över 15 års erfarenhet erbjuder vi professionella elinstallationer och moderna tekniska lösningar för både privatpersoner och företag.</p>
+      <div class="hero-cta">
+        <a href="tel:0739133613" class="btn btn-blue">Ring oss nu — 073-913 36 13</a>
+        <a href="kontakt.html" class="btn btn-outline">Begär offert</a>
+      </div>
+      <div class="hero-icons">
+        <div class="hero-icon-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <p>Certifierade Elektriker</p>
+        </div>
+        <div class="hero-icon-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <p>15+ Års Erfarenhet</p>
+        </div>
+        <div class="hero-icon-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+          <p>Kvalitet &amp; Säkerhet</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    let W, H;
+<!-- ═══ SERVICES ═══ -->
+<section class="section-white">
+  <div class="container">
+    <div class="section-center">
+      <h2>Våra Eltjänster</h2>
+      <p>Vi erbjuder ett komplett utbud av professionella eltjänster för hem och företag i Södertälje och Stockholm.</p>
+    </div>
+    <div class="services-grid">
+      <a href="tjanster.html" class="service-tile">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>
+        <span>Akut El Jour</span>
+      </a>
+      <a href="tjanster.html" class="service-tile">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9z"/></svg>
+        <span>Nyinstallation</span>
+      </a>
+      <a href="tjanster.html" class="service-tile">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        <span>Felsökning och Reparation</span>
+      </a>
+      <a href="tjanster.html" class="service-tile">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.375 2.625a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4Z"/></svg>
+        <span>Renovering av Elsystem</span>
+      </a>
+      <a href="tjanster.html" class="service-tile">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>
+        <span>Belysningsinstallation</span>
+      </a>
+      <a href="tjanster.html" class="service-tile">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+        <span>Elcentral &amp; Säkringsbyten</span>
+      </a>
+      <a href="tjanster.html" class="service-tile">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <span>Smart Hem</span>
+      </a>
+    </div>
+  </div>
+</section>
 
-    function resize() {
-      W = canvas.width  = window.innerWidth;
-      H = canvas.height = window.innerHeight;
-    }
-    window.addEventListener('resize', resize);
-    resize();
+</main>
 
-    // --- Lightning bolt via recursive midpoint displacement ---
-    function buildBolt(x1, y1, x2, y2, depth, segments) {
-      if (depth === 0) {
-        segments.push([x1, y1, x2, y2]);
-        return;
-      }
-      const mx = (x1 + x2) / 2 + (Math.random() - 0.5) * (Math.abs(y2 - y1) * 0.8);
-      const my = (y1 + y2) / 2 + (Math.random() - 0.5) * 10;
-      buildBolt(x1, y1, mx, my, depth - 1, segments);
-      buildBolt(mx, my, x2, y2, depth - 1, segments);
+<!-- ═══ FOOTER ═══ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-row">
+        <div class="footer-contact-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.18 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <a href="tel:0739133613">073-913 36 13</a>
+        </div>
+        <div class="footer-contact-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          <a href="mailto:info@voltioel.se">info@voltioel.se</a>
+        </div>
+        <div class="footer-contact-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="7" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          <span>Org.nr: 559577-1006</span>
+        </div>
+      </div>
+      <hr class="footer-sep" />
+      <p class="footer-copy">© 2026 Voltio EL AB. Alla rättigheter förbehållna.</p>
+    </div>
+  </div>
+</footer>
 
-      // Random branch
-      if (depth === 3 && Math.random() < 0.5) {
-        const bx = mx + (Math.random() - 0.5) * W * 0.3;
-        const by = my + Math.random() * (H * 0.3);
-        buildBolt(mx, my, bx, by, depth - 2, segments);
-      }
-    }
-
-    // --- Spark particles ---
-    let sparks = [];
-
-    function spawnSparks(x, y) {
-      for (let i = 0; i < 28; i++) {
-        const angle = Math.random() * Math.PI * 2;
-        const speed = 1.5 + Math.random() * 4;
-        sparks.push({
-          x, y,
-          vx: Math.cos(angle) * speed,
-          vy: Math.sin(angle) * speed - 2,
-          life: 1,
-          decay: 0.025 + Math.random() * 0.03,
-          size: 1.5 + Math.random() * 2
-        });
-      }
-    }
-
-    // --- Draw a single bolt (segments list) at given opacity ---
-    function drawBolt(segments, opacity) {
-      // Outer glow pass
-      ctx.save();
-      ctx.globalAlpha = opacity * 0.25;
-      ctx.strokeStyle = '#a0c4ff';
-      ctx.lineWidth = 6;
-      ctx.shadowColor = '#6fb3ff';
-      ctx.shadowBlur = 20;
-      ctx.beginPath();
-      for (const [x1, y1, x2, y2] of segments) {
-        ctx.moveTo(x1, y1);
-        ctx.lineTo(x2, y2);
-      }
-      ctx.stroke();
-
-      // Core bright line
-      ctx.globalAlpha = opacity;
-      ctx.strokeStyle = '#e8f4ff';
-      ctx.lineWidth = 1.5;
-      ctx.shadowColor = '#ffffff';
-      ctx.shadowBlur = 8;
-      ctx.beginPath();
-      for (const [x1, y1, x2, y2] of segments) {
-        ctx.moveTo(x1, y1);
-        ctx.lineTo(x2, y2);
-      }
-      ctx.stroke();
-      ctx.restore();
-    }
-
-    // --- Active bolts list ---
-    let bolts = [];
-    let lastTime = 0;
-
-    function triggerStrike() {
-      const startX = W * (0.15 + Math.random() * 0.7);
-      const startY = 0;
-      const endX   = startX + (Math.random() - 0.5) * W * 0.4;
-      const endY   = H * (0.5 + Math.random() * 0.5);
-
-      const segments = [];
-      buildBolt(startX, startY, endX, endY, 5, segments);
-
-      bolts.push({ segments, opacity: 1, endX, endY });
-      spawnSparks(endX, endY);
-
-      // Screen flash
-      flash.style.opacity = '0.18';
-      setTimeout(() => { flash.style.opacity = '0'; }, 60);
-
-      // Schedule next strike
-      const delay = 1800 + Math.random() * 3500;
-      setTimeout(triggerStrike, delay);
-    }
-
-    // --- Animation loop ---
-    function animate(ts) {
-      requestAnimationFrame(animate);
-
-      // Fade the previous frame (trail effect)
-      ctx.fillStyle = 'rgba(10, 10, 18, 0.35)';
-      ctx.fillRect(0, 0, W, H);
-
-      // Draw bolts, fade them out
-      bolts = bolts.filter(b => b.opacity > 0.01);
-      for (const b of bolts) {
-        drawBolt(b.segments, b.opacity);
-        b.opacity *= 0.88;
-      }
-
-      // Draw sparks
-      sparks = sparks.filter(s => s.life > 0);
-      for (const s of sparks) {
-        ctx.save();
-        ctx.globalAlpha = s.life * 0.9;
-        ctx.fillStyle = s.life > 0.6 ? '#ffe87a' : '#ff9a3c';
-        ctx.shadowColor = '#ffdd44';
-        ctx.shadowBlur = 6;
-        ctx.beginPath();
-        ctx.arc(s.x, s.y, s.size * s.life, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.restore();
-
-        s.x  += s.vx;
-        s.y  += s.vy;
-        s.vy += 0.12; // gravity
-        s.life -= s.decay;
-      }
-    }
-
-    requestAnimationFrame(animate);
-
-    // First strike after a short pause so the page settles
-    setTimeout(triggerStrike, 800);
-  </script>
+<script>
+  var btn = document.getElementById('menu-btn');
+  var menu = document.getElementById('mobile-menu');
+  var iconMenu = document.getElementById('icon-menu');
+  var iconX = document.getElementById('icon-x');
+  btn.addEventListener('click', function() {
+    var open = menu.classList.toggle('open');
+    iconMenu.style.display = open ? 'none' : '';
+    iconX.style.display    = open ? '' : 'none';
+  });
+</script>
 
 </body>
 </html>

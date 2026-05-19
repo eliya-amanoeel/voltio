@@ -11,10 +11,29 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Write web.config
+        env:
+          SMTP_PASS: ${{ secrets.SMTP_PASSWORD }}
+        run: |
+          $xml = '<?xml version="1.0" encoding="utf-8"?>' +
+            '<configuration><system.net><mailSettings>' +
+            '<smtp deliveryMethod="Network"><network' +
+            ' host="send.one.com" port="587" enableSsl="true"' +
+            ' userName="info@voltioel.se"' +
+            ' password="' + $env:SMTP_PASS + '"' +
+            ' defaultCredentials="false" /></smtp>' +
+            '</mailSettings></system.net></configuration>'
+          [System.IO.File]::WriteAllText(
+            "${{ github.workspace }}\web.config",
+            $xml,
+            [System.Text.Encoding]::UTF8
+          )
+        shell: powershell
+
       - name: Deploy to IIS
         run: |
           $source      = "${{ github.workspace }}"
           $destination = "C:\inetpub\wwwroot\voltio"
-          robocopy $source $destination index.html logo.png /IS /IT
+          robocopy $source $destination index.html tjanster.html om-oss.html kontakt.html style.css logo.png send.ashx web.config /IS /IT
           if ($LASTEXITCODE -le 7) { exit 0 } else { exit $LASTEXITCODE }
         shell: powershell
