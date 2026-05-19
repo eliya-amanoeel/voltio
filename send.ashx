@@ -77,8 +77,16 @@ public class Send : IHttpHandler
 
             ctx.Response.Redirect("kontakt.html?sent=1");
         }
-        catch
+        catch (Exception ex)
         {
+            try
+            {
+                string logPath = ctx.Server.MapPath("~/smtp-error.log");
+                string entry   = DateTime.UtcNow.ToString("u") + " " + ex.GetType().Name + ": " + ex.Message;
+                if (ex.InnerException != null) entry += " | Inner: " + ex.InnerException.Message;
+                System.IO.File.AppendAllText(logPath, entry + Environment.NewLine);
+            }
+            catch { /* ignore log failures */ }
             ctx.Response.Redirect("kontakt.html?error=smtp");
         }
     }
