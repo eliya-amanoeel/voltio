@@ -15,7 +15,7 @@ export default function OmOss() {
           <div className="about-grid">
             <div className="about-text">
               <h2>Välkommen till Voltio EL AB</h2>
-              <p>Välkommen till Voltio EL AB – din trygga och erfarna elektriker i Södertälje och Stockholm. Med över 15 års erfarenhet erbjuder vi professionella elinstallationer och moderna tekniska lösningar för både privatpersoner och företag.</p>
+              <p>Välkommen till Voltio EL AB – din trygga och erfarna elektriker i Södertälje och Stockholm. Med över 10 års erfarenhet erbjuder vi professionella elinstallationer och moderna tekniska lösningar för både privatpersoner och företag.</p>
               <p>Vi är specialiserade inom belysning, installation av elbilsladdare samt kompletta elsystem för hem och verksamheter. Vårt arbete präglas alltid av kvalitet, säkerhet och noggrannhet, där varje projekt utförs enligt de senaste branschstandarderna.</p>
               <p>Hos oss får du pålitlig service, hög kompetens och lösningar anpassade efter dina behov. Vi strävar alltid efter att leverera hållbara och effektiva resultat med fokus på kundnöjdhet och professionalism.</p>
               <div className="stats-grid">
@@ -30,7 +30,7 @@ export default function OmOss() {
                   <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/>
                   </svg>
-                  <div className="stat-num">15+</div>
+                  <div className="stat-num">10+</div>
                   <div className="stat-label">Års Erfarenhet</div>
                 </div>
               </div>
@@ -62,7 +62,7 @@ export default function OmOss() {
                 <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/>
                 </svg>
-                <h3>Över 15 Års Erfarenhet</h3>
+                <h3>Över 10 Års Erfarenhet</h3>
                 <p>Med lång erfarenhet inom elbranschen kan vi hantera alla typer av elprojekt med professionalism och expertis.</p>
               </div>
               <div className="why-card">
