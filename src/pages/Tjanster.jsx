@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 const Check = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -6,9 +6,15 @@ const Check = () => (
   </svg>
 )
 
-const Chevron = () => (
+const ArrowRight = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-    <path d="m6 9 6 6 6-6"/>
+    <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+  </svg>
+)
+
+const CloseIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M18 6 6 18"/><path d="m6 6 12 12"/>
   </svg>
 )
 
@@ -93,12 +99,12 @@ const services = [
 ]
 
 export default function Tjanster() {
-  const [open, setOpen] = useState(new Set())
-  const toggle = title => setOpen(prev => {
-    const next = new Set(prev)
-    next.has(title) ? next.delete(title) : next.add(title)
-    return next
-  })
+  const [selected, setSelected] = useState(null)
+
+  useEffect(() => {
+    document.body.style.overflow = selected ? 'hidden' : ''
+    return () => { document.body.style.overflow = '' }
+  }, [selected])
 
   return (
     <>
@@ -114,42 +120,55 @@ export default function Tjanster() {
       <section className="section-white">
         <div className="container">
           <div className="service-cards-grid">
-            {services.map(s => {
-              const isOpen = open.has(s.title)
-              return (
-                <div className="service-card" key={s.title}>
-                  <div className="service-card-head">
-                    {s.icon}
-                    <h3>{s.title}</h3>
-                  </div>
-                  <p className="service-card-desc">{s.desc}</p>
-                  <div className="service-features">
-                    {s.features.map(f => (
-                      <div className="service-feature" key={f}>
-                        <Check />
-                        <span>{f}</span>
-                      </div>
-                    ))}
-                  </div>
-                  <div className={`service-expand${isOpen ? ' open' : ''}`}>
-                    <div className="service-expand-inner">
-                      <p>{s.details}</p>
-                    </div>
-                  </div>
-                  <button
-                    className="service-read-more"
-                    onClick={() => toggle(s.title)}
-                    aria-expanded={isOpen}
-                  >
-                    <span>{isOpen ? 'Visa mindre' : 'Läs mer'}</span>
-                    <Chevron />
-                  </button>
+            {services.map(s => (
+              <div className="service-card" key={s.title}>
+                <div className="service-card-head">
+                  {s.icon}
+                  <h3>{s.title}</h3>
                 </div>
-              )
-            })}
+                <p className="service-card-desc">{s.desc}</p>
+                <div className="service-features">
+                  {s.features.map(f => (
+                    <div className="service-feature" key={f}>
+                      <Check />
+                      <span>{f}</span>
+                    </div>
+                  ))}
+                </div>
+                <button className="service-read-more" onClick={() => setSelected(s)}>
+                  <span>Läs mer</span>
+                  <ArrowRight />
+                </button>
+              </div>
+            ))}
           </div>
         </div>
       </section>
+
+      {/* ═══ MODAL ═══ */}
+      {selected && (
+        <div className="modal-overlay" onClick={() => setSelected(null)}>
+          <div className="modal-card" onClick={e => e.stopPropagation()}>
+            <button className="modal-close" onClick={() => setSelected(null)} aria-label="Stäng">
+              <CloseIcon />
+            </button>
+            <div className="modal-head">
+              {selected.icon}
+              <h2>{selected.title}</h2>
+            </div>
+            <p className="modal-desc">{selected.desc}</p>
+            <div className="service-features" style={{ marginBottom: '1.25rem' }}>
+              {selected.features.map(f => (
+                <div className="service-feature" key={f}>
+                  <Check />
+                  <span>{f}</span>
+                </div>
+              ))}
+            </div>
+            <p className="modal-details">{selected.details}</p>
+          </div>
+        </div>
+      )}
     </>
   )
 }
