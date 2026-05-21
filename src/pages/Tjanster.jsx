@@ -27,6 +27,7 @@ const services = [
     ),
     title: 'Akut El Jour',
     desc: 'Vi finns tillgängliga dygnet runt för akuta elfel och nödsituationer.',
+    urgent: true,
     features: ['24/7 tillgänglighet', 'Snabb responstid', 'Säker felsökning', 'Akutåtgärder'],
     details: 'Elolyckor och strömavbrott inträffar oftast vid sämsta möjliga tidpunkt. Vår akutjour är aktiv dygnet runt, alla dagar om året — inklusive helger och röda dagar. Våra auktoriserade elektriker når dig snabbt och åtgärdar felet säkert, oavsett om det gäller kortslutning, trasigt elskåp eller totalt strömavbrott. Vi prioriterar alltid säkerheten och arbetar metodiskt tills problemet är helt löst.',
   },
@@ -121,7 +122,7 @@ export default function Tjanster() {
         <div className="container">
           <div className="service-cards-grid">
             {services.map(s => (
-              <div className="service-card" key={s.title}>
+              <div className={`service-card${s.urgent ? ' service-card--urgent' : ''}`} key={s.title}>
                 <div className="service-card-head">
                   {s.icon}
                   <h3>{s.title}</h3>

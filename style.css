@@ -19,6 +19,9 @@
   --blue-200: #90CAF9;
   --blue-100: #BBDEFB;
   --blue-50:  #E3F2FD;
+  --amber-600: #D97706;
+  --amber-500: #F59E0B;
+  --amber-50:  #FFFBEB;
   --white:    #ffffff;
   --radius: 0.625rem;
   --shadow-md: 0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -2px rgba(0,0,0,.1);
@@ -93,6 +96,14 @@ ul  { list-style: none; }
 .nav-links a:hover::after,
 .nav-links a.active::after   { width: 100%; }
 
+.nav-cta {
+  margin-left: auto;
+  padding: .375rem .875rem;
+  font-size: .875rem;
+  gap: .375rem;
+  flex-shrink: 0;
+}
+
 .nav-toggle {
   display: flex;
   align-items: center;
@@ -100,7 +111,6 @@ ul  { list-style: none; }
   border: none;
   cursor: pointer;
   color: var(--gray-200);
-  margin-left: auto;
   padding: 4px;
 }
 @media (min-width:768px) { .nav-toggle { display: none; } }
@@ -243,6 +253,9 @@ ul  { list-style: none; }
   transition: transform .2s;
 }
 .service-tile:hover svg { transform: scale(1.1); }
+.service-tile--urgent svg { color: var(--amber-500); }
+.service-tile--urgent:hover { border-color: var(--amber-500); background: var(--amber-50); }
+.service-tile--urgent:hover svg { color: var(--amber-600); }
 .service-tile span { font-size: .875rem; line-height: 1.4; color: var(--gray-800); }
 
 /* ── Service cards (tjanster page) ────────────── */
@@ -278,6 +291,8 @@ ul  { list-style: none; }
   margin-bottom: .5rem;
 }
 .service-card-head svg { color: var(--blue-500); flex-shrink: 0; }
+.service-card--urgent { border-left: 3px solid var(--amber-500); }
+.service-card--urgent .service-card-head svg { color: var(--amber-500); }
 .service-card-head h3 {
   font-size: 1.125rem;
   font-weight: 600;
@@ -561,9 +576,11 @@ ul  { list-style: none; }
   transition: background .2s;
   text-decoration: none;
 }
-.btn-blue      { background: var(--blue-500); color: var(--white); }
-.btn-blue:hover{ background: var(--blue-600); }
-.btn-full      { width: 100%; }
+.btn-blue        { background: var(--blue-500); color: var(--white); }
+.btn-blue:hover  { background: var(--blue-600); }
+.btn-amber       { background: var(--amber-500); color: var(--white); }
+.btn-amber:hover { background: var(--amber-600); }
+.btn-full        { width: 100%; }
 
 /* ── Footer ────────────────────────────────────── */
 .site-footer { background: var(--gray-900); color: var(--white); }
