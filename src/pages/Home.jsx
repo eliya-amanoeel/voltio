@@ -8,8 +8,8 @@ export default function Home() {
         <div className="container">
           <div className="hero-split">
             <div className="hero-split-text">
-              <h1>Professionella Eltjänster i <span>Södertälje &amp; Stockholm</span></h1>
-              <p>Välkommen till Voltio EL AB – din trygga och erfarna elektriker. Med över 10 års erfarenhet erbjuder vi professionella elinstallationer och moderna tekniska lösningar för både privatpersoner och företag.</p>
+              <h1>Välkommen till <span>Voltio EL AB</span>, din eltjänstexpert i Södertälje &amp; Stockholm</h1>
+              <p>Din trygga och erfarna elektriker. Med över 10 års erfarenhet erbjuder vi professionella elinstallationer och moderna tekniska lösningar för både privatpersoner och företag.</p>
               <div className="hero-cta">
                 <a href="tel:0739133613" className="btn btn-blue" style={{gap: '.5rem'}}>
                   <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
