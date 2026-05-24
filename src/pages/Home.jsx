@@ -1,8 +1,16 @@
 import { Link } from 'react-router-dom'
+import { Helmet } from 'react-helmet-async'
 
 export default function Home() {
   return (
     <>
+      <Helmet>
+        <title>Voltio EL AB — Elektriker i Södertälje &amp; Stockholm</title>
+        <meta name="description" content="Auktoriserad elektriker i Södertälje och Stockholm. Akut el jour 24/7, nyinstallation, renovering och smarta hemlösningar. Ring 073-913 36 13." />
+        <link rel="canonical" href="https://voltioel.se/" />
+        <meta property="og:title" content="Voltio EL AB — Elektriker i Södertälje &amp; Stockholm" />
+        <meta property="og:url" content="https://voltioel.se/" />
+      </Helmet>
       {/* ═══ HERO ═══ */}
       <section className="hero-section">
         <div className="container">

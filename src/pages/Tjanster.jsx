@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { Helmet } from 'react-helmet-async'
 
 const Check = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -109,6 +110,13 @@ export default function Tjanster() {
 
   return (
     <>
+      <Helmet>
+        <title>Eltjänster — Voltio EL AB</title>
+        <meta name="description" content="Professionella eltjänster för privatpersoner och företag. Akut el jour 24/7, nyinstallation, felsökning, belysning och smart hem i Södertälje och Stockholm." />
+        <link rel="canonical" href="https://voltioel.se/tjanster" />
+        <meta property="og:title" content="Eltjänster — Voltio EL AB" />
+        <meta property="og:url" content="https://voltioel.se/tjanster" />
+      </Helmet>
       {/* ═══ PAGE HEADER ═══ */}
       <div className="page-header">
         <div className="container">

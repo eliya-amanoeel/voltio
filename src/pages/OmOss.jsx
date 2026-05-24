@@ -1,6 +1,15 @@
+import { Helmet } from 'react-helmet-async'
+
 export default function OmOss() {
   return (
     <>
+      <Helmet>
+        <title>Om oss — Voltio EL AB</title>
+        <meta name="description" content="Läs mer om Voltio EL AB. Auktoriserade elektriker med över 10 års erfarenhet i Södertälje och Stockholm." />
+        <link rel="canonical" href="https://voltioel.se/om-oss" />
+        <meta property="og:title" content="Om oss — Voltio EL AB" />
+        <meta property="og:url" content="https://voltioel.se/om-oss" />
+      </Helmet>
       {/* ═══ PAGE HEADER ═══ */}
       <div className="page-header">
         <div className="container">

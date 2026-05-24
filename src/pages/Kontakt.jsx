@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
@@ -51,6 +52,13 @@ export default function Kontakt() {
 
   return (
     <>
+      <Helmet>
+        <title>Kontakt — Voltio EL AB</title>
+        <meta name="description" content="Kontakta Voltio EL AB. Ring 073-913 36 13, e-posta info@voltioel.se eller fyll i kontaktformuläret för offert." />
+        <link rel="canonical" href="https://voltioel.se/kontakt" />
+        <meta property="og:title" content="Kontakt — Voltio EL AB" />
+        <meta property="og:url" content="https://voltioel.se/kontakt" />
+      </Helmet>
       {/* ═══ PAGE HEADER ═══ */}
       <div className="page-header">
         <div className="container">
