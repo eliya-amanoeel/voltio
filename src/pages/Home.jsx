@@ -49,12 +49,10 @@ export default function Home() {
               </div>
             </div>
             <div className="about-img-wrap">
-              <div style={{ width: '100%', aspectRatio: '4/3', background: 'var(--gray-100)', borderRadius: 'var(--radius)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '.75rem', color: 'var(--gray-400)', border: '2px dashed var(--gray-200)' }}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                  <rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
-                </svg>
-                <span style={{ fontSize: '.875rem' }}>Bild kommer snart</span>
-              </div>
+              <picture>
+                <source srcSet="/images/about.webp" type="image/webp" />
+                <img src="/images/about.jpg" alt="Voltio EL AB elektriker i arbete" width="1200" height="800" style={{ width: '100%', aspectRatio: '4/3', objectFit: 'cover', borderRadius: 'var(--radius)' }} loading="lazy" decoding="async" />
+              </picture>
             </div>
           </div>
         </div>
