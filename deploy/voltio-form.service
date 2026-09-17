@@ -1,0 +1,26 @@
+# Contact form service (replaces send.ashx). Installed as
+# /etc/systemd/system/voltio-form.service in LXC 102.
+[Unit]
+Description=Voltio contact form
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=voltio-form
+Group=voltio-form
+WorkingDirectory=/opt/voltio-form
+ExecStart=/usr/bin/dotnet /opt/voltio-form/Voltio.Form.dll
+# Smtp__Password lives here only — root-owned, readable by this service's group.
+EnvironmentFile=/etc/voltio-form/env
+Environment=ASPNETCORE_ENVIRONMENT=Production
+Environment=DOTNET_NOLOGO=1
+Restart=on-failure
+RestartSec=5
+
+NoNewPrivileges=true
+ProtectSystem=full
+ProtectHome=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

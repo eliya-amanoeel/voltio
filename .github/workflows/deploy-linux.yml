@@ -1,0 +1,55 @@
+# Deploys to LXC 102 on Proxmox. Runs next to deploy.yml (IIS) until edge
+# switches voltioel.se to the container; then deploy.yml is removed.
+name: Build & Deploy (Proxmox)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-linux
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run build
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+      - run: dotnet publish form -c Release -o form-publish --no-self-contained
+      - uses: actions/upload-artifact@v4
+        with:
+          name: site
+          path: |
+            dist/
+            form-publish/
+          retention-days: 7
+
+  deploy-linux:
+    needs: build
+    runs-on: [self-hosted, linux]
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: site
+          path: site
+      - run: rsync -a --delete site/dist/ /var/www/voltio/
+      - run: rsync -a --delete site/form-publish/ /opt/voltio-form/
+      - run: sudo /usr/bin/systemctl restart voltio-form
+      - name: Check the form service answers
+        run: |
+          for i in $(seq 10); do
+            [ "$(curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1/send.ashx)" = 302 ] && exit 0
+            sleep 1
+          done
+          exit 1

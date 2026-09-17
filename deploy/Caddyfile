@@ -1,0 +1,30 @@
+# voltio: static Vite build with client-side routing (react-router), plus the
+# contact form service that replaces IIS's send.ashx.
+# Plain HTTP on :80; HTTPS is edge's job (homelab ADR 0008).
+# Installed as /etc/caddy/Caddyfile in LXC 102.
+:80 {
+	encode zstd gzip
+
+	header {
+		X-Content-Type-Options "nosniff"
+		X-Frame-Options "SAMEORIGIN"
+		Referrer-Policy "strict-origin-when-cross-origin"
+	}
+
+	# Vite puts a content hash in these filenames, so they can be cached forever.
+	@immutable path /assets/*
+	header @immutable Cache-Control "public, max-age=31536000, immutable"
+
+	# Same URL as under IIS, so the frontend needs no change.
+	handle /send.ashx {
+		reverse_proxy 127.0.0.1:5080
+	}
+
+	# IIS answered unknown URLs with index.html and 200 (checked 2026-09-17);
+	# the router then redirects them to /. try_files does the same.
+	handle {
+		root * /var/www/voltio
+		try_files {path} /index.html
+		file_server
+	}
+}
