@@ -9,7 +9,6 @@ these differences:
 - **After step 5:** do the form service steps below **before** running the
   workflow.
 - **Step 6:** the workflow already exists: `.github/workflows/deploy-linux.yml`.
-  Leave `deploy.yml` (IIS) alone until edge has switched.
 
 | File here | Goes to |
 |---|---|

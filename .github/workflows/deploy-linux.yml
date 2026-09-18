@@ -1,5 +1,4 @@
-# Deploys to LXC 102 on Proxmox. Runs next to deploy.yml (IIS) until edge
-# switches voltioel.se to the container; then deploy.yml is removed.
+# Deploys to LXC 102 on Proxmox.
 name: Build & Deploy (Proxmox)
 
 on:

@@ -32,4 +32,4 @@ npm run preview   # Förhandsgranska produktionsbygget
 
 ## Deploy
 
-Deploy sker manuellt via GitHub Actions (\`workflow_dispatch\`). SMTP-lösenordet läses från GitHub-secret \`SMTP_PASSWORD\` och skrivs till \`web.config\` vid deploy.
+Deploy sker manuellt via GitHub Actions (\`workflow_dispatch\`, \`deploy-linux.yml\`) till LXC 102 på Proxmox. SMTP-lösenordet finns bara i \`/etc/voltio-form/env\` i containern — se \`deploy/README.md\`.
