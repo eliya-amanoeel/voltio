@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router'
 import { Toaster } from 'sonner'
 import Header from './components/Header'
 import Footer from './components/Footer'
