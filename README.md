@@ -1,61 +1,61 @@
 # Voltio EL AB
 
-Webbplatsen för [Voltio EL AB](https://voltioel.se), elektriker i Södertälje och Stockholm.
+The website for [Voltio EL AB](https://voltioel.se), electricians in Södertälje and Stockholm.
 
-## Teknik
+## Stack
 
-| Del | Teknik |
+| Part | Technology |
 |---|---|
 | Frontend | React 18, React Router 7, Vite 8 |
-| Formulär | React Hook Form och Zod, notiser med Sonner |
-| Kontaktformulär | ASP.NET Core 10 (minimal API) med MailKit |
-| E-post | SMTP via one.com |
-| Drift | Caddy och systemd i en Linux-container på Proxmox |
-| Deploy | GitHub Actions: bygger på GitHub, driftsätter via en self-hosted runner |
+| Forms | React Hook Form and Zod, notifications with Sonner |
+| Contact form | ASP.NET Core 10 (minimal API) with MailKit |
+| Email | SMTP via one.com |
+| Hosting | Caddy and systemd in a Linux container on Proxmox |
+| Deploy | GitHub Actions: builds on GitHub, deploys through a self-hosted runner |
 
-## Struktur
+## Structure
 
 ```
-src/        React-appen: sidor och komponenter
-public/     Statiska filer: bilder, favicon, robots.txt, sitemap.xml
-form/       Tjänsten som tar emot kontaktformuläret och skickar e-post
-deploy/     Caddyfile, systemd-enhet och anvisningar för servern
-.github/    Workflow för bygge och deploy
+src/        The React app: pages and components
+public/     Static files: images, favicon, robots.txt, sitemap.xml
+form/       The service that receives the contact form and sends the email
+deploy/     Caddyfile, systemd unit and server setup notes
+.github/    Build and deploy workflow
 ```
 
-## Kom igång
+## Getting started
 
-Kräver Node 24 (se `.nvmrc`).
+Requires Node 24 (see `.nvmrc`).
 
 ```bash
-npm install       # installera beroenden
-npm run dev       # starta dev-servern
-npm run build     # bygg för produktion (till dist/)
-npm run preview   # förhandsgranska produktionsbygget
+npm install       # install dependencies
+npm run dev       # start the dev server
+npm run build     # build for production (to dist/)
+npm run preview   # preview the production build
 ```
 
-Formulärtjänsten kräver .NET 10 SDK:
+The form service needs the .NET 10 SDK:
 
 ```bash
 dotnet build form
 ```
 
-## Driftsättning
+## Deployment
 
-Deploy startas manuellt i GitHub Actions (**Build & Deploy (Proxmox)**). Workflowen bygger
-webbplatsen och formulärtjänsten på GitHub och kopierar dem sedan till servern.
-SMTP-lösenordet finns bara på servern, aldrig i repot eller på GitHub.
-Se [`deploy/README.md`](deploy/README.md).
+Deploys are started by hand in GitHub Actions (**Build & Deploy (Proxmox)**). The workflow
+builds the site and the form service on GitHub, then copies them to the server.
+The SMTP password lives only on the server, never in the repo or on GitHub.
+See [`deploy/README.md`](deploy/README.md).
 
-## Kontakt
+## Contact
 
-- Telefon: 073-913 36 13
-- E-post: [info@voltioel.se](mailto:info@voltioel.se)
-- Org.nr: 559577-1006
+- Phone: 073-913 36 13
+- Email: [info@voltioel.se](mailto:info@voltioel.se)
+- Company reg. no.: 559577-1006
 
-## Licens
+## License
 
-Källkoden är licensierad under [MIT](LICENSE), © 2026 Eliya Amanoeel.
+The source code is licensed under [MIT](LICENSE), © 2026 Eliya Amanoeel.
 
-Licensen gäller inte Voltio EL AB:s logotyp, texter och bilder (bland annat i `public/`).
-De tillhör Voltio EL AB och får inte användas utan tillstånd.
+The license does not cover Voltio EL AB's logo, texts and images (including those in `public/`).
+They belong to Voltio EL AB and may not be used without permission.
