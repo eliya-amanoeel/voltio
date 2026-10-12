@@ -1,8 +1,7 @@
 # Voltio on Proxmox (LXC 102)
 
-What Voltio needs **on top of** the homelab runbook
-[`add-a-site.md`](https://github.com/eliya-amanoeel/homelab/blob/main/docs/runbooks/add-a-site.md).
-Follow the runbook with CT ID `102`, hostname `voltio`, IP `192.168.68.22`, with
+What Voltio needs **on top of** the homelab runbook `add-a-site.md` (private
+repo). Follow the runbook with CT ID `102`, hostname `voltio`, with
 these differences:
 
 - **Step 4:** use [`Caddyfile`](Caddyfile) from this folder instead of amaeli's.
@@ -72,14 +71,14 @@ It won't start until the first workflow run has put the app in `/opt/voltio-form
 **Actions → Build & Deploy (Proxmox) → Run workflow.**
 
 ```bash
-H=http://192.168.68.22
+H=http://CONTAINER_IP   # the container's LAN address
 curl -s -o /dev/null -w "home:      %{http_code}\n" $H/                 # 200
 curl -s -o /dev/null -w "unknown:   %{http_code}\n" $H/does-not-exist   # 200 (same as IIS)
 curl -s -o /dev/null -w "form GET:  %{http_code}\n" $H/send.ashx        # 302
 curl -s -H 'Accept: application/json' $H/send.ashx -d firstName=a; echo  # {"ok":false,"error":"validation"}
 ```
 
-Then send one real message through the form on `http://192.168.68.22/kontakt`
+Then send one real message through the form on `http://CONTAINER_IP/kontakt`
 and check it arrives in `info@voltioel.se`, with Reply-To set to the address you
 entered.
 
