@@ -55,6 +55,7 @@ Se [`deploy/README.md`](deploy/README.md).
 
 ## Licens
 
-Källkoden © 2026 Eliya Amanoeel. Alla rättigheter förbehållna. Koden är publik som referens.
+Källkoden är licensierad under [MIT](LICENSE), © 2026 Eliya Amanoeel.
 
-Logotyp, texter och bilder tillhör Voltio EL AB och får inte användas utan tillstånd.
+Licensen gäller inte Voltio EL AB:s logotyp, texter och bilder (bland annat i `public/`).
+De tillhör Voltio EL AB och får inte användas utan tillstånd.
